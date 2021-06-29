@@ -80,7 +80,7 @@ void Parking::del_pers(int pos)
 {
     std::vector<Person>::iterator it;
     it = persons.begin();
-    std::advance(it, pos);
+    std::advance(it, pos - 1);
     persons.erase(it);
     return;
 }
@@ -90,6 +90,49 @@ void Parking::del_by_gen(const char gen)
     std::vector<Person>::iterator it = persons.begin();
     for (size_t i = 0; i < persons.size(); i++, it++) {
         if (persons[i].get_gender() == gen) {
+            persons.erase(it);
+        }
+    }
+    return;
+}
+
+void Parking::del_by_age(const char symb, int age)
+{
+    std::vector<Person>::iterator it = persons.begin();
+    switch (symb) {
+    case '>': {
+        for (size_t i = 0; i < persons.size(); i++, it++) {
+            if (persons[i].get_age() > age) {
+                persons.erase(it);
+            }
+        }
+        break;
+    }
+    case '<': {
+        for (size_t i = 0; i < persons.size(); i++, it++) {
+            if (persons[i].get_age() > age) {
+                persons.erase(it);
+            }
+        }
+        break;
+    }
+    case '=': {
+        for (size_t i = 0; i < persons.size(); i++, it++) {
+            if (persons[i].get_age() > age) {
+                persons.erase(it);
+            }
+        }
+        break;
+    }
+    }
+    return;
+}
+
+void Parking::del_by_volume(int vol)
+{
+    std::vector<Person>::iterator it = persons.begin();
+    for (size_t i = 0; i < persons.size(); i++, it++) {
+        if (persons[i].get_volume() == vol) {
             persons.erase(it);
         }
     }

@@ -29,6 +29,8 @@ public:
 
     void del_pers(int);
     void del_by_gen(const char);
+    void del_by_age(const char, int);
+    void del_by_volume(int);
 
     friend std::ostream& operator<<(std::ostream& out, const Parking& park);
 };

@@ -70,21 +70,92 @@ void del_person(Parking& park)
     switch (choice) {
     case 1: {
         std::cout << "Select parametrs: " << std::endl;
-        std::cout << "1 - m; 2 - f; 3 - 0. " << std::endl;
+        std::cout << "1 - m; 2 - f; 3 - '0'. " << std::endl;
+        std::cout << "0 - exit. " << std::endl;
         std::cin >> choice;
         switch (choice) {
         case 1: {
             park.del_by_gen('m');
+            std::cout << "Persons has been deleted." << std::endl;
             break;
         }
         case 2: {
             park.del_by_gen('f');
+            std::cout << "Persons has been deleted." << std::endl;
             break;
         }
         case 3: {
             park.del_by_gen('0');
+            std::cout << "Persons has been deleted." << std::endl;
             break;
         }
+        case 0:
+            break;
+        }
+    }
+    case 2: {
+        std::cout << "Select parametrs: " << std::endl;
+        std::cout << "1 - great; 2 - less; 3 - equal. " << std::endl;
+        std::cout << "0 - exit. " << std::endl;
+        std::cin >> choice;
+        switch (choice) {
+        case 1: {
+            int num = 0;
+            std::cout << "great than: ";
+            std::cin >> num;
+            park.del_by_age('>', num);
+            std::cout << "Persons has been deleted." << std::endl;
+            break;
+        }
+        case 2: {
+            int num = 0;
+            std::cout << "less than: ";
+            std::cin >> num;
+            park.del_by_age('<', num);
+            std::cout << "Persons has been deleted." << std::endl;
+            break;
+        }
+        case 3: {
+            int num = 0;
+            std::cout << "equal: ";
+            std::cin >> num;
+            park.del_by_age('=', num);
+            std::cout << "Persons has been deleted." << std::endl;
+            break;
+        }
+        case 0:
+            break;
+        }
+    }
+    case 3: {
+        std::cout << "Enter the volume you would like to remove: " << std::endl;
+        std::cout << "1 ; 2 ; 3 . " << std::endl;
+        std::cout << "0 - exit. " << std::endl;
+        std::cin >> choice;
+        switch (choice) {
+        case 1: {
+            int num = 0;
+            std::cout << "great than: ";
+            std::cin >> num;
+            park.del_by_volume('>', num);
+            break;
+        }
+        case 2: {
+            int num = 0;
+            std::cout << "less than: ";
+            std::cin >> num;
+            park.del_by_age('<', num);
+            break;
+        }
+        case 3: {
+            int num = 0;
+            std::cout << "equal: ";
+            std::cin >> num;
+            park.del_by_age('=', num);
+            break;
+        }
+        case 0:
+            break;
         }
     }
     case 4: {

@@ -85,17 +85,15 @@ void Parking::del_pers(int pos)
     return;
 }
 
-//auto it = std::remove_if(myVec.begin(),
-//                         myVec.end(),
-//                         [staffNumber](const Administrator& a)
-//                         { return a.getStaffNumber() == staffNumber; });
-
-//myVec.erase(it, myVec.end());
-
-void Parking::del_by_gen(char* gen)
+void Parking::del_by_gen(const char gen)
 {
-    std::vector<Person>::iterator it;
-    it = std::re
+    std::vector<Person>::iterator it = persons.begin();
+    for (size_t i = 0; i < persons.size(); i++, it++) {
+        if (persons[i].get_gender() == gen) {
+            persons.erase(it);
+        }
+    }
+    return;
 }
 
 std::ostream& operator<<(std::ostream& out, const Parking& park)

@@ -28,7 +28,7 @@ public:
     double calc_balance();
 
     void del_pers(int);
-    void del_by_gen(char*);
+    void del_by_gen(const char);
 
     friend std::ostream& operator<<(std::ostream& out, const Parking& park);
 };

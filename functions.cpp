@@ -74,8 +74,16 @@ void del_person(Parking& park)
         std::cin >> choice;
         switch (choice) {
         case 1: {
-            while () {
-            }
+            park.del_by_gen('m');
+            break;
+        }
+        case 2: {
+            park.del_by_gen('f');
+            break;
+        }
+        case 3: {
+            park.del_by_gen('0');
+            break;
         }
         }
     }

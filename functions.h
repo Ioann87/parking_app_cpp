@@ -27,4 +27,6 @@ void add_person(Parking&);
 
 void del_person(Parking&);
 
+void show_statistic(Parking&);
+
 #endif // FUNCTIONS_H

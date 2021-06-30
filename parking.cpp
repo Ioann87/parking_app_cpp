@@ -76,6 +76,13 @@ double Parking::calc_balance()
     return balance;
 }
 
+int Parking::size_occupied()
+{
+    int size = 0;
+    size = persons.size();
+    return size;
+}
+
 void Parking::del_pers(int pos)
 {
     std::vector<Person>::iterator it;
@@ -136,6 +143,84 @@ void Parking::del_by_volume(int vol)
             persons.erase(it);
         }
     }
+    return;
+}
+
+void Parking::del_by_params(int param[], int size)
+{
+    char gen = '\0';
+    int age = 0;
+    int vol = 0;
+    for (int i = 0; i < size; i++) {
+        if (param[i] == 1) {
+            std::cout << "Enter gender: ";
+            std::cin >> gen;
+        } else if (param[i] == 2) {
+            std::cout << "Enter age: ";
+            std::cin >> age;
+        } else if (param[i] == 3) {
+            std::cout << "Enter volume: ";
+            std::cin >> vol;
+        }
+    }
+    std::vector<Person>::iterator it = persons.begin();
+    for (size_t i = 0; i < persons.size(); i++, it++) {
+        if (size == 3) {
+            if (persons[i].get_gender() == gen
+                && persons[i].get_age() == age
+                && persons[i].get_volume() == vol) {
+                persons.erase(it);
+            }
+        } else {
+            if (persons[i].get_gender() == gen
+                && persons[i].get_age() == age) {
+                persons.erase(it);
+            } else if (persons[i].get_gender() == gen
+                && persons[i].get_volume() == vol) {
+                persons.erase(it);
+            } else if (persons[i].get_age() == age
+                && persons[i].get_volume() == vol) {
+                persons.erase(it);
+            }
+        }
+    }
+    return;
+}
+
+void Parking::calc_statistic()
+{
+    std::cout << "Occupied place: " << size_occupied() << std::endl;
+    std::cout << "Free volume: " << capacity << std::endl;
+
+    double aver = 0.0;
+    for (size_t i = 0; i < persons.size(); i++) {
+        aver += persons[i].get_age();
+    }
+    aver /= persons.size();
+    std::cout << "Average age: " << aver << std::endl;
+
+    int m = 0, f = 0, n = 0;
+    for (size_t i = 0; i < persons.size(); i++) {
+        if (persons[i].get_gender() == 'm')
+            m++;
+        else if (persons[i].get_gender() == 'f')
+            f++;
+        else if (persons[i].get_gender() == '0')
+            n++;
+    }
+    if (m > f && m > n)
+        std::cout << "More males " << std::endl;
+    else if (f > m && f > n)
+        std::cout << "More females " << std::endl;
+    else
+        std::cout << "More neutrales " << std::endl;
+
+    aver = 0.0;
+    for (size_t i = 0; i < persons.size(); i++) {
+        aver += persons[i].get_cash();
+    }
+    std::cout << "Peoples volume money: " << aver << std::endl;
+    std::cout << "Profit: " << balance << std::endl;
     return;
 }
 

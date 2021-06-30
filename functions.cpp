@@ -44,11 +44,11 @@ Person init_person()
 
 void menu()
 {
-    std::cout << "Welcome to parking application!" << std::endl;
     std::cout << "Select an action:" << std::endl;
     std::cout << "1 - add person; 2 - delete person;" << std::endl;
-    std::cout << "3 - show all persons; " << std::endl;
-    std::cout << "4 - exit. " << std::endl;
+    std::cout << "3 - show statistic; " << std::endl;
+    std::cout << "4 - show parking; " << std::endl;
+    std::cout << "0 - exit. " << std::endl;
     return;
 }
 
@@ -62,14 +62,16 @@ void add_person(Parking& park)
 
 void del_person(Parking& park)
 {
-    std::cout << "Select parametrs: " << std::endl;
+    std::cout << "Select parametres: " << std::endl;
     std::cout << "1 - gender; 2 - age;" << std::endl;
     std::cout << "3 - volume; 4 - position;" << std::endl;
+    std::cout << "5 - great than two parametres;" << std::endl;
     std::cout << "0 - back. " << std::endl;
     int choice = 0;
+    std::cin >> choice;
     switch (choice) {
     case 1: {
-        std::cout << "Select parametrs: " << std::endl;
+        std::cout << "Select parametres: " << std::endl;
         std::cout << "1 - m; 2 - f; 3 - '0'. " << std::endl;
         std::cout << "0 - exit. " << std::endl;
         std::cin >> choice;
@@ -92,6 +94,7 @@ void del_person(Parking& park)
         case 0:
             break;
         }
+        break;
     }
     case 2: {
         std::cout << "Select parametrs: " << std::endl;
@@ -126,6 +129,7 @@ void del_person(Parking& park)
         case 0:
             break;
         }
+        break;
     }
     case 3: {
         std::cout << "Enter the volume you would like to remove: " << std::endl;
@@ -137,36 +141,62 @@ void del_person(Parking& park)
             int num = 0;
             std::cout << "great than: ";
             std::cin >> num;
-            park.del_by_volume('>', num);
+            park.del_by_volume(num);
+            std::cout << "Persons has been deleted." << std::endl;
             break;
         }
         case 2: {
             int num = 0;
             std::cout << "less than: ";
             std::cin >> num;
-            park.del_by_age('<', num);
+            park.del_by_volume(num);
+            std::cout << "Persons has been deleted." << std::endl;
             break;
         }
         case 3: {
             int num = 0;
             std::cout << "equal: ";
             std::cin >> num;
-            park.del_by_age('=', num);
+            park.del_by_volume(num);
+            std::cout << "Persons has been deleted." << std::endl;
             break;
         }
         case 0:
             break;
         }
+        break;
     }
     case 4: {
-        std::cout << "Enter position(1-50): ";
+        std::cout << "Enter position(1-" << park.size_occupied() << "): ";
         int pos = 0;
         std::cin >> pos;
         park.del_pers(pos);
         std::cout << "Person has been deleted." << std::endl;
         break;
     }
-    }
+    case 5: {
+        std::cout << "Select parametrs: " << std::endl;
+        std::cout << "1 - gender; 2 - age;" << std::endl;
+        std::cout << "3 - volume;" << std::endl;
+        std::cout << "0 - exit. " << std::endl;
+        std::cout << "How much parametres: ";
+        int size = 0;
+        std::cin >> size;
 
+        int parametres[size];
+        for (int i = 0; i < size; i++) {
+            std::cout << "enter parametres: " << std::endl;
+            std::cin >> parametres[i];
+        }
+        park.del_by_params(parametres, size);
+        break;
+    }
+    }
+    return;
+}
+
+void show_statistic(Parking& park)
+{
+    park.calc_statistic();
     return;
 }

@@ -17,7 +17,7 @@ int main()
     add_names();
 
     Parking park;
-
+    std::cout << "Welcome to parking application!" << std::endl;
     while (true) {
         menu();
         int choice = 0;
@@ -29,27 +29,17 @@ int main()
         case 2:
             del_person(park);
             break;
+        case 3:
+            show_statistic(park);
+            break;
+        case 4:
+            cout << park;
+            break;
+        case 0:
+            exit(0);
         }
 
         system("pause");
     }
-
-    add_person(park);
-    add_person(park);
-    add_person(park);
-    add_person(park);
-    add_person(park);
-
-    cout << park;
-
-    //    park.set_persons(pers);
-
-    //    cout << pers;
-
-    //    cout << park;
-
-    //    cout << endl;
-    //    cout << pers;
-
     return 0;
 }
